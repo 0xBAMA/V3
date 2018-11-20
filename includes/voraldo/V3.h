@@ -1,3 +1,45 @@
+#include "../CImg.h"		//single-header library for image display and saving	
+//License below
+
+
+#include "../json.hpp"  	//single-header library for output file formatting		
+//MIT License
+
+
+#include "../linalg.h"      //single-header library for linear algebra (vectors)	
+//Public Domain License
+
+//   _    _______
+//  | |  / /__  /
+//  | | / / /_ < 
+//  | |/ /___/ /  - the color update
+//  |___//____/  - future work will be needed to get block I/O working
+//               
+
+//Cimg license - from Cimg.eu - CImg is a free, open-source library distributed 
+//under the CeCILL-C (close to the GNU LGPL) or CeCILL (compatible with the GNU GPL) 
+//licenses. It can be used in commercial applications.
+
+#include <cstdlib>
+#include <math.h>
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <map>
+
+//#include <bitset> 
+//not in use right now
+
+using vec = linalg::aliases::double3;
+using vec2 = linalg::aliases::double2;
+using mat = linalg::aliases::double3x3;
+using intvec = linalg::aliases::int3;
+using veContainer = std::vector<vec>;
+
+using std::cout;
+using std::endl;
 
 
 struct RGB{
@@ -6,7 +48,7 @@ struct RGB{
 	unsigned char blue;
 };
 
-struct Vox {
+struct Vox{
 	RGB color;
 
 	int state; //right now I am visualizing this as a way to
@@ -33,7 +75,7 @@ public:
 	Voraldo();
 	~Voraldo();
 
-	void init_block(int x, int y, int z, bool noise);
+	void init_block(int x, int y, int z, bool noise_fill);
 
 
 //not that important right now
@@ -83,7 +125,7 @@ public:
 //array access functions
 
 	void set_data_by_3D_index(int x, int y, int z, Vox set);
-	Vox  get_data_by_3D_index(int x, int y, int z);
+	Vox  get_data_by_3D_index(int x, int y, int z){return data[get_array_index_for_3D_index(x,y,z)];}
 
 	int get_array_index_for_3D_index(int x, int y, int z);
 
