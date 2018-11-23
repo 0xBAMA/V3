@@ -100,15 +100,32 @@ int main(){
 	linept1 = triangle1pt2;
 	linept2 = triangle2pt2;
 
-	main_block->draw_line_segment(linept1,linept2, main_block->name_to_Vox_map.at("frame"));
+	main_block->draw_cylinder(linept1,linept2, 6.0, main_block->name_to_Vox_map.at("frame"));
 
 	linept1 = triangle1pt3;
 	linept2 = triangle2pt3;
 
-	main_block->draw_line_segment(linept1,linept2, main_block->name_to_Vox_map.at("red_light"));
+	main_block->draw_tube(linept1,linept2, 4.0,6.0, main_block->name_to_Vox_map.at("red_light"));
 
 	main_block->draw_triangle(triangle1pt1,triangle1pt2,triangle1pt3,main_block->name_to_Vox_map.at("electrical"));
 	main_block->draw_triangle(triangle2pt1,triangle2pt2,triangle2pt3,main_block->name_to_Vox_map.at("electrical"));
+
+	vec blockoid_max = vec(10,10,10);
+	vec blockoid_min = vec(5,5,5);
+
+	main_block->draw_blockoid(blockoid_min,blockoid_max,main_block->name_to_Vox_map.at("red_light"));
+
+	vec a = vec(60,40,100);
+	vec b = vec(60,15,100);
+	vec c = vec(140,40,100);
+	vec d = vec(140,15,100);
+
+	vec e = vec(60,85,30);
+	vec f = vec(60,60,30);
+	vec g = vec(140,85,30);
+	vec h = vec(140,60,30);
+
+	main_block->draw_quadrilateral_hexahedron(a,b,c,d,e,f,g,h,main_block->name_to_Vox_map.at("blue_light"));
 
 	tock = Clock::now();
 
