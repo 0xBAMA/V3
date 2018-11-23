@@ -96,10 +96,10 @@ public:
 	void draw_point(vec point, Vox set);
 
 	//draw along 3 dimensional line segment
-	void draw_line_segment(vec point1, vec point2, Vox set);
+	void draw_line_segment(vec v1, vec v2, Vox set);
 
 	//draw 3 dimensional triangle, with verticies point 0, point 1, point 2
-	void draw_triangle(vec point0, vec point1, vec point2, Vox set);
+	void draw_triangle(vec v0, vec v1, vec v2, Vox set);
 
 	//draw sphere - centered at center_point, of radius radius
 	void draw_sphere(vec center_point, double radius, Vox set);
@@ -125,9 +125,11 @@ public:
 //array access functions
 
 	void set_data_by_3D_index(int x, int y, int z, Vox set);
-	Vox  get_data_by_3D_index(int x, int y, int z){return data[get_array_index_for_3D_index(x,y,z)];}
+	Vox  get_data_by_3D_index(int x, int y, int z);
 
 	int get_array_index_for_3D_index(int x, int y, int z);
+
+	void clear_all();
 
 
 
@@ -135,19 +137,24 @@ public:
 //mask functions
 
 	void unmask_all();
-
 	void invert_mask();
+	void mask_all_nonzero();
 
 //display
 
 	void display();
 
 
+//holding named voxel values
+	std::map<std::string, Vox> name_to_Vox_map;
+
+//holding named colors
+	std::map<std::string, RGB> name_to_RGB_map;
 
 private:
 
 //want to know if a point is above or below a plane? below returns true, for reasons
-	bool planetest();//tbd arguments
+	bool planetest(vec plane_point, vec plane_normal, vec test_point);
 
 
 //block dimensions
@@ -160,13 +167,8 @@ private:
 
 
 //the voxels
-	Vox *data
+	Vox *data;
 
 
-//holding named voxel values
-	std::map<std::string, Vox> name_to_Vox_map;
-
-//holding named colors
-	std::map<std::string, RGB> name_to_RGB_map;
 	
 };
