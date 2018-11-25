@@ -211,6 +211,15 @@ Voraldo::Voraldo()
 
 	name_to_Vox_map["red_light"] = red_light;
 
+	Vox red_light_big;
+	red_light_big.mask = false;
+	red_light_big.color = name_to_RGB_map.at("bright_red");
+	red_light_big.alpha = 0.9;
+	red_light_big.size = 3;
+	red_light_big.state = 5;
+
+	name_to_Vox_map["red_light_big"] = red_light_big;
+
 	Vox green_light;
 	green_light.mask = false;
 	green_light.color = name_to_RGB_map.at("bright_green");
@@ -260,7 +269,7 @@ Voraldo::Voraldo()
 	solid_black.mask = false;
 	solid_black.color = name_to_RGB_map.at("black");
 	solid_black.alpha = 1.0;
-	solid_black.size = 1;
+	solid_black.size = 2;
 	solid_black.state = 5;
 
 	name_to_Vox_map["solid_black"] = solid_black;
@@ -273,6 +282,17 @@ Voraldo::Voraldo()
 	clear_blue_glass.state = 5;
 
 	name_to_Vox_map["clear_blue_glass"] = clear_blue_glass;
+
+
+	Vox space_gas_solid;
+	space_gas_solid.mask = false;
+	space_gas_solid.color = name_to_RGB_map.at("dark_grey");
+	space_gas_solid.alpha = 1.0;
+	space_gas_solid.size = 1;
+	space_gas_solid.state = 6;
+
+	name_to_Vox_map["space_gas_solid"] = space_gas_solid;
+
 
 
 	Vox space_gas_0;
@@ -323,7 +343,7 @@ Voraldo::Voraldo()
 	Vox space_gas_5;
 	space_gas_5.mask = false;
 	space_gas_5.color = name_to_RGB_map.at("gold");
-	space_gas_5.alpha = 0.3;
+	space_gas_5.alpha = 0.11;
 	space_gas_5.size = 2;
 	space_gas_5.state = 6;
 
@@ -1033,7 +1053,7 @@ void Voraldo::mask_all_nonzero()
 	for(int i = 0; i < num_cells; i++)
 	{
 		data[i].mask = data[i].state ? true : false;
-	}	//nonzero cells will be masked
+	}	//nonzero cells will be masked, with all zero cells then being allowed to change freely
 }
 
 //display
