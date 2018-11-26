@@ -202,6 +202,15 @@ Voraldo::Voraldo()
 
 	name_to_Vox_map["electrical"] = electrical;
 
+	Vox diff;
+	diff.mask = false;
+	diff.color = name_to_RGB_map.at("gold");
+	diff.alpha = 0.87;
+	diff.size = 2;
+	diff.state = 4;
+
+	name_to_Vox_map["diff"] = diff;
+
 	Vox red_light;
 	red_light.mask = false;
 	red_light.color = name_to_RGB_map.at("bright_red");
