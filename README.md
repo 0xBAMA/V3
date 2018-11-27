@@ -1,3 +1,3 @@
 # V3
 The third iteration
-![Screenshot](http://i.imgur.com/x90ZXtf.png)
+![Screenshot](https://github.com/0xBAMA/V3/blob/master/output.bmp?raw=true)
