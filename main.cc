@@ -70,12 +70,14 @@ int main(){
 	vec LFouter = vec(178,128,93);
 
 	vec Rdiff = vec(78,128,128);
-	vec Fdiff = vec(178,128,128);
-
 	vec Rdiff_Roffset = vec(78,128,138);
 	vec Rdiff_Loffset = vec(78,128,118);
-
 	vec Rdiff_Foffset = vec(84,128,128);
+
+	vec Fdiff = vec(178,128,128);
+	vec Fdiff_Roffset = vec(178,128,138);
+	vec Fdiff_Loffset = vec(178,128,118);
+	vec Fdiff_Boffset = vec(172,128,128);
 
 	//Draw platform
 	main_block->draw_blockoid(vec(0,0,0),vec(257,118,257),main_block->name_to_Vox_map.at("armor_0"));
@@ -108,13 +110,19 @@ int main(){
 
 	main_block->mask_all_nonzero();
 
-	//Draw diff
+	//Draw rear diff
 	main_block->draw_sphere(Rdiff,3.8, main_block->name_to_Vox_map.at("diff"));
 	main_block->draw_cylinder(Rdiff,Rdiff_Roffset,2.3,main_block->name_to_Vox_map.at("diff"));
 	main_block->draw_cylinder(Rdiff,Rdiff_Loffset,2.3,main_block->name_to_Vox_map.at("diff"));
 	main_block->draw_cylinder(Rdiff,Rdiff_Foffset,2.3,main_block->name_to_Vox_map.at("diff"));
 
-	main_block->draw_sphere(Rdiff_Foffset,1.0, main_block->name_to_Vox_map.at("electrical"));
+	main_block->draw_sphere(Rdiff_Foffset,1.5, main_block->name_to_Vox_map.at("electrical"));
+
+	//Draw front diff
+	main_block->draw_sphere(Fdiff,3.8, main_block->name_to_Vox_map.at("diff"));
+	main_block->draw_cylinder(Fdiff,Fdiff_Roffset,2.3,main_block->name_to_Vox_map.at("diff"));
+	main_block->draw_cylinder(Fdiff,Fdiff_Loffset,2.3,main_block->name_to_Vox_map.at("diff"));
+	main_block->draw_cylinder(Fdiff,Fdiff_Boffset,2.3,main_block->name_to_Vox_map.at("diff"));
 
 	//Draw wheels and tires
 	main_block->draw_cylinder(LFinner,LFouter,8,main_block->name_to_Vox_map.at("space_gas_5"));
